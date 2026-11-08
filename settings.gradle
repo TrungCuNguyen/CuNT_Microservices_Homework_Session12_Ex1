@@ -1,0 +1,3 @@
+rootProject.name = 'ex_ss12_micro'
+
+include 'product-service'
