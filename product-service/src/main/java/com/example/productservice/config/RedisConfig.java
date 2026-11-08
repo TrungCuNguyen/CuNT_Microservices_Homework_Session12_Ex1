@@ -28,7 +28,8 @@ public class RedisConfig {
 
     /**
      * Cấu hình ObjectMapper hỗ trợ Java 8 Date/Time và lưu thông tin kiểu (typing)
-     * để GenericJackson2JsonRedisSerializer có thể deserialize chính xác kiểu đối tượng.
+     * để GenericJackson2JsonRedisSerializer có thể deserialize chính xác kiểu đối
+     * tượng.
      */
     @Bean
     public ObjectMapper redisObjectMapper() {
@@ -37,15 +38,15 @@ public class RedisConfig {
         mapper.activateDefaultTyping(
                 LaissezFaireSubTypeValidator.instance,
                 ObjectMapper.DefaultTyping.NON_FINAL,
-                JsonTypeInfo.As.PROPERTY
-        );
+                JsonTypeInfo.As.PROPERTY);
         return mapper;
     }
 
     /**
      * Cấu hình RedisCacheManager quản lý Spring Cache với:
      * - Key serializer: StringRedisSerializer
-     * - Value serializer: GenericJackson2JsonRedisSerializer (lưu dạng JSON dễ đọc & tương thích)
+     * - Value serializer: GenericJackson2JsonRedisSerializer (lưu dạng JSON dễ đọc
+     * & tương thích)
      * - TTL (Time-To-Live): 30 phút theo yêu cầu bài tập
      * - Không cache giá trị null
      */
@@ -56,7 +57,8 @@ public class RedisConfig {
         RedisCacheConfiguration cacheConfig = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofMinutes(CACHE_TTL_MINUTES))
                 .disableCachingNullValues()
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
+                .serializeKeysWith(
+                        RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jsonSerializer));
 
         return RedisCacheManager.builder(connectionFactory)
@@ -68,7 +70,8 @@ public class RedisConfig {
      * Cấu hình RedisTemplate dùng cho các thao tác trực tiếp với Redis nếu cần
      */
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory, ObjectMapper redisObjectMapper) {
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory,
+            ObjectMapper redisObjectMapper) {
         GenericJackson2JsonRedisSerializer jsonSerializer = new GenericJackson2JsonRedisSerializer(redisObjectMapper);
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);

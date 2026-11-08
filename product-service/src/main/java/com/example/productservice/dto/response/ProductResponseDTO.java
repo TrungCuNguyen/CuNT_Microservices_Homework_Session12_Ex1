@@ -21,3 +21,4 @@ public class ProductResponseDTO implements Serializable {
     private BigDecimal price;
     private Integer stockQuantity;
 }
+

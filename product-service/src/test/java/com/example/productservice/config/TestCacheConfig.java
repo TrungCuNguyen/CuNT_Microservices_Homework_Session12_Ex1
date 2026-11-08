@@ -17,3 +17,4 @@ public class TestCacheConfig {
         return new ConcurrentMapCacheManager(RedisConfig.PRODUCT_CACHE);
     }
 }
+

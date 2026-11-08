@@ -36,3 +36,4 @@ public class Product implements Serializable {
     @Column(name = "stock_quantity", nullable = false)
     private Integer stockQuantity;
 }
+

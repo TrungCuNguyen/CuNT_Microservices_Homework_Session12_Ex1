@@ -137,3 +137,4 @@ curl -i http://localhost:8081/api/v1/products/1
 Bộ test `ProductServiceCacheTest` tự động verify:
 1. `testCacheAsidePattern_GetProductById`: Cache miss gọi DB, Cache hit không gọi DB.
 2. `testCacheEvict_OnUpdateProduct`: `@CacheEvict` dọn dẹp cache sau update và truy vấn DB ở lần gọi tiếp.
+

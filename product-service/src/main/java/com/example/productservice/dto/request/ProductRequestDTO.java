@@ -30,3 +30,4 @@ public class ProductRequestDTO {
     @Min(value = 0, message = "Số lượng tồn kho không được âm")
     private Integer stockQuantity;
 }
+

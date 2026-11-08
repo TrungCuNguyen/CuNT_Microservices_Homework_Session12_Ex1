@@ -17,3 +17,4 @@ public interface ProductService {
 
     List<ProductResponseDTO> getAllProducts();
 }
+

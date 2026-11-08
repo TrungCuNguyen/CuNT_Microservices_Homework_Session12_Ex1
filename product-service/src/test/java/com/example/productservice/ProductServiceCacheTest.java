@@ -93,11 +93,13 @@ class ProductServiceCacheTest {
                 .build();
         productService.updateProduct(productId, updateDTO);
 
-        // 3. Gọi getProductById lần nữa -> Vì cache đã bị evict, phương thức phải gọi lại DB
+        // 3. Gọi getProductById lần nữa -> Vì cache đã bị evict, phương thức phải gọi
+        // lại DB
         ProductResponseDTO thirdCall = productService.getProductById(productId);
         assertEquals("MacBook Pro M3 Max", thirdCall.getName());
 
-        // Tổng số lần gọi findById là 3 (1 lần đầu + 1 lần trong updateProduct + 1 lần sau khi evict)
+        // Tổng số lần gọi findById là 3 (1 lần đầu + 1 lần trong updateProduct + 1 lần
+        // sau khi evict)
         verify(productRepository, times(3)).findById(productId);
     }
 }
